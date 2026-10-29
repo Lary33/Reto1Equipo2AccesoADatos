@@ -8,12 +8,12 @@ import java.nio.file.Path
 
 @Repository
 class VideojuegoRepository {
-    private val ruta: Path = Path.of("datos", "Videojuegos.csv")
+    private val ruta: Path = Path.of("data", "Videojuegos.csv")
 
     init {
         Files.createDirectories(ruta.parent)
         if (Files.notExists(ruta)) {
-            javaClass.getResourceAsStream("/datos/Videojuegos.csv").use { origen ->
+            javaClass.getResourceAsStream("/data/Videojuegos.csv").use { origen ->
                 if (origen != null) Files.copy(origen, ruta) else Files.createFile(ruta)
             }
         }
