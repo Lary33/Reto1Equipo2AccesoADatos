@@ -1,0 +1,90 @@
+body {
+  display: block;
+  color: white;
+}
+
+.contenedor {
+  width: min(1100px, 94%);
+  margin: 50px auto;
+}
+
+.estrecho {
+  max-width: 620px;
+}
+
+header, .acciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+h1 { color: #43f554; }
+
+.volver, .acciones a {
+  color: #35e8ee;
+}
+
+.panel, .tabla {
+  padding: 24px;
+  background: #101226;
+  border: 1px solid #555588;
+  border-radius: 5px;
+}
+
+.tabla { overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #333650;
+}
+
+.acciones form { margin: 0; }
+
+.acciones button {
+  background: none;
+  border: 0;
+  color: #ff637b;
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.accion {
+  display: inline-block;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 3px;
+  background: #35e8ee;
+  color: #101020;
+  font: bold 16px "Courier New", monospace;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.accion.nuevo { background: #43f554; }
+.accion.borrar { background: #ff405e; color: #101020; text-decoration: none; }
+.panel .acciones { justify-content: flex-start; }
+
+.formulario {
+  display: grid;
+  gap: 18px;
+}
+
+.formulario label { display: grid; gap: 7px; }
+
+.formulario input {
+  padding: 10px;
+  border: 1px solid #999;
+  border-radius: 3px;
+  font: inherit;
+}
+
+.error { color: #ff637b; }
