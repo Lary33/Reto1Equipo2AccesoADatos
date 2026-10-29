@@ -1,0 +1,46 @@
+<!-- Autor: Mario Handarici | Entidad: Videojuegos -->
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Videojuegos</title>
+  <link rel="stylesheet" th:href="@{/style.css}" href="/style.css">
+  <link rel="stylesheet" th:href="@{/crud.css}" href="/crud.css">
+</head>
+<body>
+  <main class="contenedor">
+    <a class="volver" th:href="@{/categorias.html}" href="/categorias.html">← Categorías</a>
+    <header>
+      <h1>Videojuegos</h1>
+      <a class="accion nuevo" th:href="@{/videojuegos/nuevo}" href="/videojuegos/nuevo">Añadir videojuego</a>
+    </header>
+
+    <div class="tabla" th:if="${!videojuegos.isEmpty()}">
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Título</th><th>Estudio</th><th>Año</th><th>Precio</th><th>Acciones</th></tr>
+        </thead>
+        <tbody>
+          <tr th:each="juego : ${videojuegos}">
+            <td th:text="${juego.idVideojuego}">1</td>
+            <td th:text="${juego.titulo}">Minecraft</td>
+            <td th:text="${juego.estudio}">Mojang</td>
+            <td th:text="${juego.lanzamiento}">2009</td>
+            <td th:text="${juego.precio} + ' €'">30.0 €</td>
+            <td class="acciones">
+              <a th:href="@{/videojuegos/{id}(id=${juego.idVideojuego})}">Ver</a>
+              <a th:href="@{/videojuegos/editar/{id}(id=${juego.idVideojuego})}">Editar</a>
+              <form th:action="@{/videojuegos/borrar/{id}(id=${juego.idVideojuego})}" method="post"
+                    onsubmit="return confirm('¿Borrar este videojuego?')">
+                <button type="submit">Borrar</button>
+              </form>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="panel" th:if="${videojuegos.isEmpty()}">No hay videojuegos guardados.</p>
+  </main>
+</body>
+</html>
