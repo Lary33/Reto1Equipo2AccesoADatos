@@ -1,0 +1,30 @@
+<!-- Autor: Jesús Blázquez | Entidad: Periféricos -->
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del periférico</title>
+  <link rel="stylesheet" th:href="@{/style.css}" href="/style.css">
+  <link rel="stylesheet" th:href="@{/crud.css}" href="/crud.css">
+</head>
+<body>
+  <main class="contenedor estrecho">
+    <a class="volver" th:href="@{/perifericos}">← Volver al listado</a>
+    <section class="panel">
+      <h1 th:text="${periferico.modelo}">DeathAdder V3</h1>
+      <p><strong>ID:</strong> <span th:text="${periferico.idPeriferico}">1</span></p>
+      <p><strong>Marca:</strong> <span th:text="${periferico.marca}">Razer</span></p>
+      <p><strong>DPI máximo:</strong> <span th:text="${periferico.dpiMaximo}">30000</span></p>
+      <p><strong>Peso:</strong> <span th:text="${periferico.pesoGramos} + ' g'">59 g</span></p>
+      <div class="acciones">
+        <a class="accion" th:href="@{/perifericos/editar/{id}(id=${periferico.idPeriferico})}">Editar</a>
+        <form th:action="@{/perifericos/borrar/{id}(id=${periferico.idPeriferico})}" method="post"
+              onsubmit="return confirm('¿Borrar este periférico?')">
+          <button class="accion borrar" type="submit">Borrar</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

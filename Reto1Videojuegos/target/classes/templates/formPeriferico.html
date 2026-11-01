@@ -1,0 +1,36 @@
+<!-- Autor: Jesús Blázquez | Entidad: Periféricos -->
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${tituloPagina}">Nuevo periférico</title>
+  <link rel="stylesheet" th:href="@{/style.css}" href="/style.css">
+  <link rel="stylesheet" th:href="@{/crud.css}" href="/crud.css">
+</head>
+<body>
+  <main class="contenedor estrecho">
+    <a class="volver" th:href="@{/perifericos}">← Volver al listado</a>
+    <section class="panel">
+      <h1 th:text="${tituloPagina}">Nuevo periférico</h1>
+      <p class="error" th:if="${error}" th:text="${error}"></p>
+      <form th:action="@{/perifericos/guardar}" th:object="${periferico}" method="post" class="formulario">
+        <input type="hidden" th:field="*{idPeriferico}">
+        <label>Modelo
+          <input type="text" th:field="*{modelo}" maxlength="80" required>
+        </label>
+        <label>Marca
+          <input type="text" th:field="*{marca}" maxlength="80" required>
+        </label>
+        <label>DPI máximo
+          <input type="number" th:field="*{dpiMaximo}" min="1" required>
+        </label>
+        <label>Peso en gramos
+          <input type="number" th:field="*{pesoGramos}" min="0.01" step="0.01" required>
+        </label>
+        <button class="accion nuevo" type="submit">Guardar</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
