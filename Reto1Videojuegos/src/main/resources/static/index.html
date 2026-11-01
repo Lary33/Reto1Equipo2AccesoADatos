@@ -4,11 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Entrar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="invaders-menu.css">
 </head>
 <body>
-  <main>
-    <a class="boton rojo" href="categorias.html">ENTRAR</a>
-  </main>
+  <div id="invaders-menu"></div>
+
+  <script src="invaders-menu.js"></script>
+  <script>
+    iniciarMenuInvaders({
+      contenedor: '#invaders-menu',
+      titulo: 'Gestor de datos Equipo 2: Videojuegos',
+      invasores: [
+        { etiqueta: 'Inicio', destino: '/categorias.html' }
+      ]
+    });
+  </script>
 </body>
 </html>

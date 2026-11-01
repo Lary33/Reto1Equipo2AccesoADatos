@@ -4,15 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Categorías</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="invaders-menu.css">
 </head>
 <body>
-  <main>
-    <div class="fila-botones">
-      <a class="boton azul" href="/videojuegos">VIDEOJUEGOS</a>
-      <a class="boton rojo" href="/consolas">CONSOLAS</a>
-      <a class="boton verde" href="/perifericos">PERIFÉRICOS</a>
-    </div>
-  </main>
+  <div id="invaders-menu"></div>
+
+  <script src="invaders-menu.js"></script>
+  <script>
+    // Elección de entidad: al disparar a un invasor se abre el CRUD de esa entidad.
+    // El destino es la ruta de cada controlador (si alguna es distinta, se cambia aquí).
+    iniciarMenuInvaders({
+      contenedor: '#invaders-menu',
+      titulo: 'Elige entidad',
+      invasores: [
+        { etiqueta: 'Videojuegos (Mario)', destino: '/videojuegos' },
+        { etiqueta: 'Consolas (Lary)',    destino: '/consolas' },
+        { etiqueta: 'Periféricos (Jesús)', destino: '/perifericos' },
+        { etiqueta: 'Volver',      destino: '/index.html' }
+      ]
+    });
+  </script>
 </body>
 </html>

@@ -1,0 +1,140 @@
+/* Estilos del menú Space Invaders */
+
+/* El body de style.css centra con flex y encogería el contenedor al tamaño de su
+   contenido. Así la arena ocupa todo el ancho de la pantalla. */
+#invaders-menu {
+  width: 100%;
+}
+
+.im-arena {
+  position: relative;
+  height: 100vh;
+  min-height: 480px;
+  overflow: hidden;
+  background: transparent;   /* así se ve el fondo de estrellas de style.css */
+  color: #fff;
+  font-family: 'Press Start 2P', 'Courier New', monospace;
+
+  /* La nave hace de cursor, así que ocultamos el del sistema */
+  cursor: none;
+  touch-action: none;     /* para que arrastrar el dedo no haga scroll */
+  user-select: none;
+}
+.im-arena * {
+  cursor: none;
+}
+
+.im-titulo {
+  margin: 0;
+  padding-top: 2rem;
+  text-align: center;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  font-weight: normal;
+  color: #4cff4c;
+}
+
+/* ---------- Fila de invasores (una sola fila) ---------- */
+.im-fila {
+  display: flex;
+  justify-content: center;
+  gap: clamp(.3rem, 4vw, 3.5rem);
+  margin-top: 4rem;
+  animation: im-marcha 3s steps(12, end) infinite alternate;
+}
+
+.im-invasor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .6rem;
+  padding: .6rem clamp(.1rem, 1.5vw, .8rem);
+  background: none;
+  border: 0;
+  font: inherit;
+  color: #ff5ad1;
+}
+.im-invasor:nth-child(3n + 2) { color: #5ad1ff; }
+.im-invasor:nth-child(3n + 3) { color: #ffd23f; }
+
+/* Contorno al moverse con Tab (el cursor está oculto y si no, no se vería) */
+.im-invasor:focus-visible {
+  outline: 2px dashed #ffd23f;
+  outline-offset: 4px;
+}
+
+.im-sprite,
+.im-icono {
+  width: clamp(32px, 8vw, 72px);
+  height: auto;
+}
+
+.im-etiqueta {
+  font-size: clamp(.35rem, 1.8vw, .6rem);
+  color: #fff;
+  text-align: center;
+}
+
+/* ---------- Nave y bala ---------- */
+.im-nave {
+  position: absolute;
+  left: 0;
+  bottom: 2.4rem;
+  width: 56px;
+  color: #4cff4c;
+  pointer-events: none;
+}
+.im-nave .im-sprite {
+  width: 100%;
+  display: block;
+}
+
+/* Si cambias el tamaño, cambia también BALA_ANCHO y BALA_ALTO en el JS */
+.im-bala {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 16px;
+  background: #fff;
+  box-shadow: 0 0 8px #fff;
+  pointer-events: none;
+}
+
+.im-ayuda {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: .6rem;
+  margin: 0;
+  text-align: center;
+  font-size: .55rem;
+  opacity: .55;
+  pointer-events: none;
+}
+
+/* ---------- Explosión ---------- */
+/* Dura lo mismo que TIEMPO_EXPLOSION del JS (500 ms) */
+.im-impactado {
+  animation: im-explota .5s ease-out forwards;
+  pointer-events: none;
+}
+
+.im-bloqueada .im-fila {
+  animation-play-state: paused;
+}
+
+@keyframes im-explota {
+  0%   { transform: scale(1);   color: #fff;    opacity: 1; }
+  40%  { transform: scale(1.4); color: #ffd23f; opacity: 1; }
+  100% { transform: scale(2);   color: #ff7a00; opacity: 0; }
+}
+
+/* Los invasores se mueven de lado a lado (el recorrido depende del ancho de pantalla) */
+@keyframes im-marcha {
+  from { transform: translateX(-2vw); }
+  to   { transform: translateX(2vw); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .im-fila { animation: none; }
+}
