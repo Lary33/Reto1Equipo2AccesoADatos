@@ -1,0 +1,36 @@
+<!-- Autor: Constantin Laurentiu David | Entidad: Consola -->
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${tituloPagina}">Nueva consola</title>
+  <link rel="stylesheet" th:href="@{/style.css}" href="/style.css">
+  <link rel="stylesheet" th:href="@{/crud.css}" href="/crud.css">
+</head>
+<body>
+  <main class="contenedor estrecho">
+    <a class="volver" th:href="@{/consolas}" href="/consolas">← Volver al listado</a>
+    <section class="panel">
+      <h1 th:text="${tituloPagina}">Nueva consola</h1>
+      <p class="error" th:if="${error}" th:text="${error}"></p>
+      <form th:action="@{/consolas/guardar}" th:object="${consola}" method="post" class="formulario">
+        <input type="hidden" th:field="*{idConsola}">
+        <label>Nombre
+          <input type="text" th:field="*{nombre}" maxlength="80" required>
+        </label>
+        <label>Fabricante
+          <input type="text" th:field="*{fabricante}" maxlength="80" required>
+        </label>
+        <label>Generación
+          <input type="number" th:field="*{generacion}" min="1" required>
+        </label>
+        <label>Ventas (millones de unidades)
+          <input type="number" th:field="*{ventas}" min="0" step="0.01" required>
+        </label>
+        <button class="accion nuevo" type="submit">Guardar</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
