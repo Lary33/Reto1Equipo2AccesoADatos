@@ -1,0 +1,18 @@
+<!-- Autor: Constantin Laurentiu David | Entidad: Consola -->
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consola no encontrada</title>
+  <link rel="stylesheet" th:href="@{/style.css}" href="/style.css">
+  <link rel="stylesheet" th:href="@{/crud.css}" href="/crud.css">
+</head>
+<body>
+  <main class="contenedor estrecho panel">
+    <h1>Consola no encontrada</h1>
+    <p>No existe una consola con esa ID.</p>
+    <a class="accion" th:href="@{/consolas}" href="/consolas">Volver al listado</a>
+  </main>
+</body>
+</html>

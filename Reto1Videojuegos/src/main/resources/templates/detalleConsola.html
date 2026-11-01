@@ -1,0 +1,30 @@
+<!-- Autor: Constantin Laurentiu David | Entidad: Consola -->
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle de la consola</title>
+  <link rel="stylesheet" th:href="@{/style.css}" href="/style.css">
+  <link rel="stylesheet" th:href="@{/crud.css}" href="/crud.css">
+</head>
+<body>
+  <main class="contenedor estrecho">
+    <a class="volver" th:href="@{/consolas}" href="/consolas">← Volver al listado</a>
+    <section class="panel">
+      <h1 th:text="${consola.nombre}">Game Boy</h1>
+      <p><strong>ID:</strong> <span th:text="${consola.idConsola}">1</span></p>
+      <p><strong>Fabricante:</strong> <span th:text="${consola.fabricante}">Nintendo</span></p>
+      <p><strong>Generación:</strong> <span th:text="${consola.generacion}">1</span></p>
+      <p><strong>Ventas:</strong> <span th:text="${consola.ventas} + ' millones'">118.7 millones</span></p>
+      <div class="acciones">
+        <a class="accion" th:href="@{/consolas/editar/{id}(id=${consola.idConsola})}">Editar</a>
+        <form th:action="@{/consolas/borrar/{id}(id=${consola.idConsola})}" method="post"
+              onsubmit="return confirm('¿Borrar esta consola?')">
+          <button class="accion borrar" type="submit">Borrar</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
