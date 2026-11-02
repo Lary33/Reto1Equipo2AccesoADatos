@@ -15,18 +15,12 @@ import java.nio.file.Path
 @Repository
 class PerifericoRepository {
 
-    // Se lee y modifica el mismo CSV que aparece en el proyecto.
-    private val ruta: Path = Path.of("src", "main", "resources", "data", "Perifericos.csv")
-
-    init {
-        Files.createDirectories(ruta.parent)
-        if (Files.notExists(ruta)) {
-            javaClass.getResourceAsStream("/data/Perifericos.csv").use { origen ->
-                if (origen != null) Files.copy(origen, ruta)
-                else Files.createFile(ruta)
-            }
-        }
-    }
+    // Se utiliza siempre el CSV existente, sin crear carpetas duplicadas.
+    private val ruta: Path = listOf(
+        Path.of("src", "main", "resources", "data", "Perifericos.csv"),
+        Path.of("Reto1Videojuegos", "src", "main", "resources", "data", "Perifericos.csv")
+    ).firstOrNull { Files.isRegularFile(it) }
+        ?: error("No se encuentra src/main/resources/data/Perifericos.csv. Comprueba el directorio de trabajo.")
 
     @Synchronized
     fun listar(): List<Periferico> {

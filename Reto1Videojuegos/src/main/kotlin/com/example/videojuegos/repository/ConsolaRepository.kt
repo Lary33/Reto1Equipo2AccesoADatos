@@ -15,27 +15,12 @@ import java.nio.file.Path
 @Repository
 class ConsolaRepository {
 
-    private val ruta: Path = Path.of(
-        "src", "main", "resources", "data", "Consola.csv"
-    )
-
-    init {
-        Files.createDirectories(ruta.parent)
-
-        if (Files.notExists(ruta)) {
-            val origen = javaClass.getResourceAsStream(
-                "/data/Consola.csv"
-            )
-
-            if (origen != null) {
-                origen.use {
-                    Files.copy(it, ruta)
-                }
-            } else {
-                Files.createFile(ruta)
-            }
-        }
-    }
+    // Se utiliza el CSV existente en el proyecto, sin crear otra carpeta data.
+    private val ruta: Path = listOf(
+        Path.of("src", "main", "resources", "data", "Consola.csv"),
+        Path.of("Reto1Videojuegos", "src", "main", "resources", "data", "Consola.csv")
+    ).firstOrNull { Files.isRegularFile(it) }
+        ?: error("No se encuentra src/main/resources/data/Consola.csv. Comprueba el directorio de trabajo.")
 
     @Synchronized
     fun listar(): List<Consola> {

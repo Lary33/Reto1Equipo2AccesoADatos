@@ -15,27 +15,13 @@ import java.nio.file.Path
 @Repository
 class VideojuegoRepository {
 
-    private val ruta: Path = Path.of(
-        "src", "main", "resources", "data", "Videojuegos.csv"
-    )
-
-    init {
-        Files.createDirectories(ruta.parent)
-
-        if (Files.notExists(ruta)) {
-            val origen = javaClass.getResourceAsStream(
-                "/data/Videojuegos.csv"
-            )
-
-            if (origen != null) {
-                origen.use {
-                    Files.copy(it, ruta)
-                }
-            } else {
-                Files.createFile(ruta)
-            }
-        }
-    }
+    // Localiza el CSV existente desde la carpeta del proyecto o desde su carpeta padre.
+    // No crea otra carpeta data si IntelliJ cambia el directorio de ejecución.
+    private val ruta: Path = listOf(
+        Path.of("src", "main", "resources", "data", "Videojuegos.csv"),
+        Path.of("Reto1Videojuegos", "src", "main", "resources", "data", "Videojuegos.csv")
+    ).firstOrNull { Files.isRegularFile(it) }
+        ?: error("No se encuentra src/main/resources/data/Videojuegos.csv. Comprueba el directorio de trabajo.")
 
     @Synchronized
     fun listar(): List<Videojuego> {

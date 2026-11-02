@@ -62,11 +62,23 @@ th, td {
   padding: 10px 16px;
   border: 0;
   border-radius: 3px;
-  background: #35e8ee;
+  background: #49b5bd;
   color: #101020;
   font: bold 16px "Courier New", monospace;
   text-decoration: none;
   cursor: pointer;
+}
+
+/* En los detalles, este selector evita que el color del enlace se confunda
+   con el fondo del botón Editar. */
+.acciones a.accion {
+  color: #101020;
+  background: #49b5bd;
+  text-decoration: none;
+}
+
+.acciones a.accion:hover {
+  background: #73c8ce;
 }
 
 .accion.nuevo { background: #43f554; }
